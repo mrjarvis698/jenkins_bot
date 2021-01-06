@@ -12,6 +12,7 @@
 #Predefined Exports
 
 #Repo Init
+export rom_name="[Corvus/Nitrogen etc]"
 export depth="[true/false]"
 export android_manifest_url="[Manifest Url]"
 export manifest_branch="[Manifest Branch]"

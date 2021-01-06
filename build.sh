@@ -50,4 +50,11 @@ sendMessage "Lunched ${device_name} Successfully."
 # Build Rom
 sendMessage "Starting Build for ${device_name}."
 ${make_rom}
-sendMessage "${make_rom} Finished. Check for your Build."
+if ls out/target/product/${device_name}/${rom_name}*_.zip 1> /dev/null 2>&1; then
+	sendMessage "Build Completed."
+else
+	sendMessage "Build Failed! Rebuilding for logs."
+	make installclean
+	${make_rom} | tee errorlog-${BUILD_DATE}-${BUILD_TIME}.txt
+	sendMessage "Check Logs."
+fi
