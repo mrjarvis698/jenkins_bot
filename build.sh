@@ -21,3 +21,10 @@ fi
 
 # Repo Sync
 repo sync -j$(nproc --all) --force-sync --no-tags --no-clone-bundle
+
+# ccache
+export PATH="$(pwd)/ccache/:$PATH"
+export USE_CCACHE=1
+export CCACHE_EXEC=$(pwd)/ccache
+ccache -M 25G
+export _JAVA_OPTIONS=-Xmx14g
