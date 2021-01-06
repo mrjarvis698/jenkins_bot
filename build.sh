@@ -10,3 +10,14 @@
 # Script by @mrjarvis698
 
 . $(pwd)/export.sh
+
+# Repo Init
+if [ $depth == true ]
+then
+	repo init --depth=1 -u ${android_manifest_url} -b ${manifest_branch}
+else
+	repo init -u ${android_manifest_url} -b ${manifest_branch}
+fi
+
+# Repo Sync
+repo sync -j$(nproc --all) --force-sync --no-tags --no-clone-bundle

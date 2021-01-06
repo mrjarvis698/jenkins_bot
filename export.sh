@@ -8,3 +8,10 @@
 # of this license document, but changing it is not allowed.
 #
 # Script by @mrjarvis698
+
+#Predefined Exports
+
+#Repo Init
+export depth="[true/false]"
+export android_manifest_url="[Manifest Url]"
+export manifest_branch="[Manifest Branch]"
