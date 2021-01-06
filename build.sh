@@ -18,6 +18,10 @@ sendMessage() {
     echo -e
 }
 
+#Set Date and Time
+export BUILD_DATE=$(date +%Y%m%d)
+export BUILD_TIME=$(date +%H%M)
+
 # Repo Init
 sendMessage "Repo Initializing."
 if [[ $depth -eq true ]]; then
@@ -59,5 +63,6 @@ else
 	sendMessage "Build Failed! Rebuilding for logs."
 	make installclean
 	${make_rom} | tee errorlog-${BUILD_DATE}-${BUILD_TIME}.txt
+	rclone copy -P errorlog-${BUILD_DATE}-${BUILD_TIME}.txt gdrive:${device_name}
 	sendMessage "Check Logs."
 fi
