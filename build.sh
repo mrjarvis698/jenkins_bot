@@ -59,6 +59,8 @@ if ls out/target/product/${device_name}/${rom_name}*_.zip 1> /dev/null 2>&1; the
 	sendMessage "Uploading Build To Drive"
 	rclone copy -P out/target/product/${device_name}/${rom_name}*.zip gdrive:${device_name}
 	sendMessage "Uploaded to Google-Drive"
+	sudo shutdown +10
+	sendMessage "Auto Shut-Down Initiated! Will Poweroff within 10mins."
 else
 	sendMessage "Build Failed! Rebuilding for logs"
 	make installclean
@@ -68,8 +70,12 @@ else
 	sendMessage "Uploading Build To Drive"
 	rclone copy -P out/target/product/${device_name}/${rom_name}*.zip gdrive:${device-name}
 	sendMessage "Uploaded to Google-Drive"
+ 	sudo shutdown +10
+	sendMessage "Auto Shut-Down Initiated! Will Poweroff within 10mins."
    else
 	sendMessage "Build Failed! Check Logs"
 	rclone copy -P errorlog-${BUILD_DATE}-${BUILD_TIME}.txt gdrive:${device_name}
+ 	sudo shutdown +10
+	sendMessage "Auto Shut-Down Initiated! Will Poweroff within 10mins."
    fi
 fi
