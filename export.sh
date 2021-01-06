@@ -23,3 +23,7 @@ export build_variant="[eng/userdebug/user]"
 
 # Make Rom
 export make_rom="[mka bacon/make/Rom Make Choice]"
+
+# Telegram Bot
+export BOT_API_KEY="[Telegram Bot API Token]"
+export BOT_CHAT_ID="[Chat ID of User or Group]"
