@@ -52,6 +52,9 @@ sendMessage "Starting Build for ${device_name}."
 ${make_rom}
 if ls out/target/product/${device_name}/${rom_name}*_.zip 1> /dev/null 2>&1; then
 	sendMessage "Build Completed."
+	sendMessage "Uploading Build To Drive"
+	rclone copy -P out/target/product/${device_name}/${rom_name}*.zip gdrive:${device_name}
+	sendMessage "Uploaded to Google-Drive"
 else
 	sendMessage "Build Failed! Rebuilding for logs."
 	make installclean
