@@ -55,14 +55,21 @@ sendMessage "Lunched ${device_name} Successfully."
 sendMessage "Starting Build for ${device_name}."
 ${make_rom}
 if ls out/target/product/${device_name}/${rom_name}*_.zip 1> /dev/null 2>&1; then
-	sendMessage "Build Completed."
+	sendMessage "Build Completed"
 	sendMessage "Uploading Build To Drive"
 	rclone copy -P out/target/product/${device_name}/${rom_name}*.zip gdrive:${device_name}
 	sendMessage "Uploaded to Google-Drive"
 else
-	sendMessage "Build Failed! Rebuilding for logs."
+	sendMessage "Build Failed! Rebuilding for logs"
 	make installclean
 	${make_rom} | tee errorlog-${BUILD_DATE}-${BUILD_TIME}.txt
+   if ls out/target/product/${device-name}/${rom_name}*.zip 1> /dev/null 2>&1; then
+	sendMessage "Build Completed"
+	sendMessage "Uploading Build To Drive"
+	rclone copy -P out/target/product/${device_name}/${rom_name}*.zip gdrive:${device-name}
+	sendMessage "Uploaded to Google-Drive"
+   else
+	sendMessage "Build Failed! Check Logs"
 	rclone copy -P errorlog-${BUILD_DATE}-${BUILD_TIME}.txt gdrive:${device_name}
-	sendMessage "Check Logs."
+   fi
 fi
