@@ -15,3 +15,11 @@
 export depth="[true/false]"
 export android_manifest_url="[Manifest Url]"
 export manifest_branch="[Manifest Branch]"
+
+# Lunch device
+export device_prefix="[device prefix like du/rr/revengeos]"
+export device_name="[devicename]"
+export build_variant="[eng/userdebug/user]"
+
+# Make Rom
+export make_rom="[mka bacon/make/Rom Make Choice]"

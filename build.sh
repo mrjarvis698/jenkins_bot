@@ -28,3 +28,12 @@ export USE_CCACHE=1
 export CCACHE_EXEC=$(pwd)/ccache
 ccache -M 25G
 export _JAVA_OPTIONS=-Xmx14g
+
+# Build Environment
+. $(pwd)/build/envsetup.sh
+
+# Lunch device
+lunch "${device_prefix}_${device_name}"-"${build_variant}"
+
+# Build Rom
+${make_rom}
